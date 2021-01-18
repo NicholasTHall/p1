@@ -1,0 +1,21 @@
+Sauce
+Cheese
+Pepperoni
+Sausage
+Steak
+Ham
+Chicken
+Bacon
+Jalapenos
+Red Peppers
+Green Pepper
+Onions
+Banana Peppers
+Pineapple
+Mushrooms
+Black Olives
+Green Olives
+Broccoli
+Spinach
+Anchovies
+Tomatoes
