@@ -1,0 +1,14 @@
+@model PizzaWorld.WebClient.Models.CustomerViewModel
+
+@{
+  ViewBag.Title = "Customer - NewCustomer";
+  Layout = "_CustomLayout";
+}
+
+<form asp-action="AddNewCustomer" asp-controller="Customer" asp-antiforgery="true" method="POST">
+
+  <label>Enter Customer Name</label>
+  <input type="text" asp-for="Name">
+
+  <button type="submit" value="Name">New user</button>
+</form>

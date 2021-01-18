@@ -1,0 +1,18 @@
+@model PizzaWorld.WebClient.Models.CustomerViewModel
+
+@{
+  ViewBag.Title = "Customer - Home";
+  Layout = "_CustomLayout";
+}
+
+<section>
+  @Model.Name
+
+  @foreach (var item in Model.Orders)
+  {
+    <section class="row">
+      <textarea disabled="false">@item.ToString()</textarea>
+      <text contenteditable="false">@item.OrderDate</text>
+    </section>
+  }
+</section>

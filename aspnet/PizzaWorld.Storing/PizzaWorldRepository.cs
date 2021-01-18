@@ -45,6 +45,12 @@ namespace PizzaWorld.Storing
                        .FirstOrDefault<User>(u => u.Name == name);
     }
 
+    public void AddUser(User user)
+    {
+            _ctx.Add(user);
+            _ctx.SaveChanges();
+    }
+
     // public IEnumerable<T> Get<T>() where T : AModel
     // {
     //   return _ctx.Set<T>().Select(t => t.GetType().GetProperty()).ToList();
