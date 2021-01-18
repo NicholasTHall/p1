@@ -37,6 +37,17 @@ namespace PizzaWorld.WebClient.Controllers
       return View();
     }
 
+    [HttpGet]
+    public IActionResult OrderHistory(CustomerViewModel model)
+    {
+      var customer = new CustomerViewModel()
+      {
+        Name = model.Name,
+        Orders = _ctx.GetOneUser(model.Name).Orders
+      };
+      return View(customer);
+    }
+
     [HttpPost]
     public IActionResult AddNewCustomer(CustomerViewModel model)
     {

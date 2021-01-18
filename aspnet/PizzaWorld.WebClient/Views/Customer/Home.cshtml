@@ -7,6 +7,11 @@
 
 <section>
   @Model.Name
+
+  <form>
+    @Html.ActionLink("Order History","OrderHistory","Customer",this.Model)
+  </form>
+
 </section>
 
 @Html.Partial("~/Views/Order/Order.cshtml", Model.Order)

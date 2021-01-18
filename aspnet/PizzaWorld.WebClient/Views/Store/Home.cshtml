@@ -1,0 +1,15 @@
+@model PizzaWorld.WebClient.Models.StoreViewModel
+
+@{
+  ViewBag.Title = "Store - Home";
+  Layout = "_CustomLayout";
+}
+
+<section>
+  @Model.Name
+
+  <form>
+    @Html.ActionLink("Order History","OrderHistory","Store",this.Model)
+  </form>
+
+</section>
