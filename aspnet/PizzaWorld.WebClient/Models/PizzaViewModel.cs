@@ -9,7 +9,7 @@ namespace PizzaWorld.WebClient.Models
     public string PizzaType {get; set;}
     public string PizzaCrust {get; set;}
     public string PizzaSize {get; set;}
-    public List<PizzaTopping> PizzaToppings {get; set;}
+    public List<string> PizzaToppings {get; set;}
     public decimal Price {get; set;}
   }
 }

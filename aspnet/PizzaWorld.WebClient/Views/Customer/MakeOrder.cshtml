@@ -2,7 +2,7 @@
 
 @{
   ViewBag.Title = "Customer - MakeOrder";
-  Layout = "_CustomLayout";
+  Layout = "_Layout";
 }
 <section class="col-md-6">
   <section class="row">
@@ -71,6 +71,12 @@
         <label for="@Model.Order.Pizza.PizzaSize">Extra Large</label>
       </section>
 
+      <h3>Select topping</h3>
+      @foreach (var item in System.IO.File.ReadAllLines(@"Toppings.txt"))
+      {
+        <input type="checkbox" name="@Model.Order.Pizza.PizzaToppings" value="@item">
+        <label for="@Model.Order.Pizza.PizzaToppings">@item</label>
+      }
       <button type="submit">Add Pizza</button>
     </form>
   </section>
