@@ -18,7 +18,10 @@ namespace PizzaWorld.Domain.Models
     {
       Orders.Add(new Order());
     }
-
+    public void CreateOrder(Order order)
+    {
+      Orders.Add(order);
+    }
     bool DeleteOrder(Order order)
     {
       try

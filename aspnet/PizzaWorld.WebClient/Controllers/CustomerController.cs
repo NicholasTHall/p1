@@ -27,7 +27,7 @@ namespace PizzaWorld.WebClient.Controllers
       var user = _ctx.GetOneUser(model.Name);
       var customer = new CustomerViewModel();
       customer.Name = user.Name;
-      customer.SelectedStore = _ctx.GetOneStore("One");
+      customer.SelectedStore = _ctx.GetOneStore("One").Name;
       customer.Orders = user.Orders;
       customer.Order = new OrderViewModel()
       {
@@ -70,15 +70,17 @@ namespace PizzaWorld.WebClient.Controllers
       var customer = new CustomerViewModel()
       {
         Name = model.Name,
+        SelectedStore = model.SelectedStore,
         Orders = _ctx.GetOneUser(model.Name).Orders,
         Order = new OrderViewModel()
         {
           Customer = model.Name,
+          Store = model.SelectedStore,
           Pizzas = new List<APizzaModel>(),
           Pizza = new PizzaViewModel()
         }
       };
-      return RedirectToAction("MakeOrder", customer);
+      return View("MakeOrder", customer);
     }
 
     [HttpGet]
@@ -87,13 +89,9 @@ namespace PizzaWorld.WebClient.Controllers
       var customer = new CustomerViewModel()
       {
         Name = model.Name,
+        SelectedStore = model.SelectedStore,
         Orders = _ctx.GetOneUser(model.Name).Orders,
-        Order = new OrderViewModel()
-        {
-          Customer = model.Name,
-          Pizzas = new List<APizzaModel>(),
-          Pizza = new PizzaViewModel()
-        }
+        Order = model.Order
       };
 
       return View(customer);
@@ -112,7 +110,7 @@ namespace PizzaWorld.WebClient.Controllers
           PizzaSize = new PizzaSize(model.Order.Pizza.PizzaSize),
           PizzaToppings = new List<PizzaTopping>()
         };
-        pizza.PizzaToppings.Add(new PizzaWorld.Domain.Models.PizzaComponents.PizzaTopping("cheese"));
+        pizza.PizzaToppings.Add(new PizzaTopping("cheese"));
         pizza.CalPrice();
 
         var customer = model;

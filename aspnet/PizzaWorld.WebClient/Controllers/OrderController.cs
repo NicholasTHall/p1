@@ -22,12 +22,23 @@ namespace PizzaBox.WebClient.Controllers
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Post(OrderViewModel model)
+    public IActionResult PlaceOrder(OrderViewModel model)
     {
       if (ModelState.IsValid)
       {
+        var user = _ctx.GetOneUser(model.Customer);
+        user.SelectedStore = _ctx.GetOneStore(model.Store);
+        
+        var order = new Order();
 
+        foreach(var pizza in model.Pizzas)
+        {
+          order.Pizzas.Add(pizza);
+        }
 
+        user.SelectedStore.CreateOrder(order);
+        user.Orders.Add(order);
+        _ctx.Update();
         return View("~/Views/Home/Index.cshtml");
       }
 

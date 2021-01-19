@@ -16,8 +16,9 @@
     @Html.HiddenFor(m=>m.Name)
     @Html.HiddenFor(m=>m.SelectedStore)
     @Html.HiddenFor(m=>m.Orders)
+    @Html.HiddenFor(m=>m.Order.Store)
     @Html.HiddenFor(m=>m.Order.Pizzas)
-    @Html.ActionLink("Make Order","CreateOrder","Customer",this.Model)
+    @Html.ActionLink("Make Order","CreateOrder","Customer",Model)
   </form>
 
 </section>

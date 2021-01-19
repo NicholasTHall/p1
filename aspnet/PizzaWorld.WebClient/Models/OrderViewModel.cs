@@ -11,6 +11,7 @@ namespace PizzaWorld.WebClient.Models
   public class OrderViewModel
   {
     public string Customer {get; set;}
+    public string Store {get; set;}
     public PizzaViewModel Pizza { get; set; }
     public List<APizzaModel> Pizzas { get; set; }
     public DateTime OrderDate { get; set; }
