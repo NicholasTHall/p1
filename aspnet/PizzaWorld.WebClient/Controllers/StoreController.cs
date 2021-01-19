@@ -18,8 +18,8 @@ namespace PizzaWorld.WebClient.Controllers
     public IActionResult Home()
     {
       var store = new StoreViewModel();
-      store.Name = _ctx.GetOneStore("Four").Name;
-      store.Orders = _ctx.GetOneStore("Four").Orders;
+      store.Name = _ctx.GetOneStore("Two").Name;
+      store.Orders = _ctx.GetStoreOrders("Two");
 
       return View("home", store);
     }

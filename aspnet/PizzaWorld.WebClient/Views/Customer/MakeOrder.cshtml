@@ -1,0 +1,81 @@
+@model PizzaWorld.WebClient.Models.CustomerViewModel
+
+@{
+  ViewBag.Title = "Customer - MakeOrder";
+  Layout = "_CustomLayout";
+}
+<section class="col-md-6">
+  <section class="row">
+    <h2>Customer: @Model.Name</h2>
+
+    <form asp-action="AddPizza" asp-controller="customer" asp-antiforgery="true" method="POST">
+      @Html.HiddenFor(m=>m.Name)
+      @Html.HiddenFor(m=>m.SelectedStore)
+      @Html.HiddenFor(m=>m.Orders)
+      @Html.HiddenFor(m=>m.Order.Pizzas)
+      <h3>Select Pizza</h3>
+      <section class="row-md-4">
+        <input type="radio" asp-for="@Model.Order.Pizza.PizzaType" value="BuffaloChickenPizza">
+        <label for="@Model.Order.Pizza.PizzaType">BuffaloChickenPizza</label>
+      </section>
+      <section class="row-md-4">
+        <input checked="true" type="radio" asp-for="@Model.Order.Pizza.PizzaType" value="CustomPizza">
+        <label for="@Model.Order.Pizza.PizzaType">CustomPizza</label>
+      </section>
+      <section class="row-md-4">
+        <input type="radio" asp-for="@Model.Order.Pizza.PizzaType" value="GlutenFreePizza">
+        <label for="@Model.Order.Pizza.PizzaType">GlutenFreePizza</label>
+      </section>
+      <section class="row-md-4">
+        <input type="radio" asp-for="@Model.Order.Pizza.PizzaType" value="HawaiianPizza">
+        <label for="@Model.Order.Pizza.PizzaType">HawaiianPizza</label>
+      </section>
+      <section class="row-md-4">
+        <input type="radio" asp-for="@Model.Order.Pizza.PizzaType" value="MeatPizza">
+        <label for="@Model.Order.Pizza.PizzaType">MeatPizza</label>
+      </section>
+      <section class="row-md-4">
+        <input type="radio" asp-for="@Model.Order.Pizza.PizzaType" value="PillyCheeseSteakPizza">
+        <label for="@Model.Order.Pizza.PizzaType">PillyCheeseSteakPizza</label>
+      </section>
+
+      <h3>Select Crust</h3>
+      <section class="row-md-4">
+        <input checked="true" type="radio" asp-for="@Model.Order.Pizza.PizzaCrust" value="Regular">
+        <label for="@Model.Order.Pizza.PizzaSize">Regular</label>
+      </section>
+      <section class="row-md-4">
+        <input type="radio" asp-for="@Model.Order.Pizza.PizzaCrust" value="Thin">
+        <label for="@Model.Order.Pizza.PizzaSize">Thin</label>
+        </section>
+      <section class="row-md-4">
+        <input type="radio" asp-for="@Model.Order.Pizza.PizzaCrust" value="CheeseFill">
+        <label for="@Model.Order.Pizza.PizzaSize">Cheese Fill</label>
+      </section>
+
+      <h3>Select Size</h3>
+      <section class="row-md-4">
+        <input checked="true" type="radio" asp-for="@Model.Order.Pizza.PizzaSize" value="Small">
+        <label for="@Model.Order.Pizza.PizzaSize">Small</label>
+      </section>
+      <section class="row-md-4">
+        <input type="radio" asp-for="@Model.Order.Pizza.PizzaSize" value="Medium">
+        <label for="@Model.Order.Pizza.PizzaSize">Medium</label>
+        </section>
+      <section class="row-md-4">
+        <input type="radio" asp-for="@Model.Order.Pizza.PizzaSize" value="Large">
+        <label for="@Model.Order.Pizza.PizzaSize">Large</label>
+      </section>
+       <section class="row-md-4">
+        <input type="radio" asp-for="@Model.Order.Pizza.PizzaSize" value="ExtraLarge">
+        <label for="@Model.Order.Pizza.PizzaSize">Extra Large</label>
+      </section>
+
+      <button type="submit">Add Pizza</button>
+    </form>
+  </section>
+</section>
+<section class="col-md-6">
+  @Html.Partial("~/Views/Order/Order.cshtml", Model.Order)
+</section>
+

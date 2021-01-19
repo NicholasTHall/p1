@@ -6,12 +6,18 @@
 }
 
 <section>
-  @Model.Name
+  <h2>Customer: @Model.Name</h2>
 
   <form>
     @Html.ActionLink("Order History","OrderHistory","Customer",this.Model)
   </form>
 
-</section>
+  <form>
+    @Html.HiddenFor(m=>m.Name)
+    @Html.HiddenFor(m=>m.SelectedStore)
+    @Html.HiddenFor(m=>m.Orders)
+    @Html.HiddenFor(m=>m.Order.Pizzas)
+    @Html.ActionLink("Make Order","CreateOrder","Customer",this.Model)
+  </form>
 
-@Html.Partial("~/Views/Order/Order.cshtml", Model.Order)
+</section>

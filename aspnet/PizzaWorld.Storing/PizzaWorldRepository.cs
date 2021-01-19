@@ -33,6 +33,14 @@ namespace PizzaWorld.Storing
                         .FirstOrDefault<Store>(s => s.Name == name);
     }
 
+    public List<Order> GetStoreOrders(string name)
+    {
+      return _ctx.Stores.Include(s => s.Orders).ThenInclude(o => o.Pizzas).ThenInclude(c => c.PizzaCrust)
+                        .Include(s => s.Orders).ThenInclude(o => o.Pizzas).ThenInclude(ps => ps.PizzaSize)
+                        .Include(s => s.Orders).ThenInclude(o => o.Pizzas).ThenInclude(t => t.PizzaToppings)
+                        .FirstOrDefault<Store>(s => s.Name == name).Orders;
+    }
+
     public IEnumerable<User> GetUsers()
     {
       return _ctx.Users;
@@ -43,6 +51,14 @@ namespace PizzaWorld.Storing
                        .Include(u => u.Orders).ThenInclude(o => o.Pizzas).ThenInclude(ps => ps.PizzaSize)
                        .Include(u => u.Orders).ThenInclude(o => o.Pizzas).ThenInclude(t => t.PizzaToppings)
                        .FirstOrDefault<User>(u => u.Name == name);
+    }
+
+    public List<Order> GetUserOrders(string name)
+    {
+      return _ctx.Users.Include(u => u.Orders).ThenInclude(o => o.Pizzas).ThenInclude(c => c.PizzaCrust)
+                       .Include(u => u.Orders).ThenInclude(o => o.Pizzas).ThenInclude(ps => ps.PizzaSize)
+                       .Include(u => u.Orders).ThenInclude(o => o.Pizzas).ThenInclude(t => t.PizzaToppings)
+                       .FirstOrDefault<User>(u => u.Name == name).Orders;
     }
 
     public void AddUser(User user)
