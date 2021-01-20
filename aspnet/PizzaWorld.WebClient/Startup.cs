@@ -33,9 +33,6 @@ namespace PizzaWorld.WebClient
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc();
-            services.AddDistributedMemoryCache();
-            services.AddSession();
             services.AddControllersWithViews();
             services.AddDbContext<PizzaWorldContext>(options =>
             {
@@ -64,7 +61,6 @@ namespace PizzaWorld.WebClient
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseSession();
 
             app.UseRouting();
 

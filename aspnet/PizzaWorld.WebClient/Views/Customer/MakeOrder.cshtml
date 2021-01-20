@@ -13,6 +13,7 @@
       @Html.HiddenFor(m=>m.SelectedStore)
       @Html.HiddenFor(m=>m.Orders)
       @Html.HiddenFor(m=>m.Order)
+      @Html.HiddenFor(m=>m.Order.Customer)
       @Html.HiddenFor(m=>m.Order.Store)
       @Html.HiddenFor(m=>m.Order.Pizzas)
       <h3>Select Pizza</h3>
@@ -84,6 +85,6 @@
   </section>
 </section>
 <section class="col-md-6">
-  @Html.Partial("~/Views/Order/Order.cshtml", Model.Order)
+  @Html.Partial("~/Views/Order/Order.cshtml", this.Model.Order)
 </section>
 

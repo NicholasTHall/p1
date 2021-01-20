@@ -1,0 +1,14 @@
+@model PizzaWorld.WebClient.Models.StoreViewModel
+
+@{
+  ViewBag.Title = "Customer - SelectStore";
+  Layout = "_Layout";
+}
+
+<form asp-action="SelectStore" asp-controller="Store" asp-antiforgery="true" method="POST">
+
+  <label>Enter Store Name</label>
+  <input type="text" asp-for="Name">
+
+  <button type="submit" value="Name">Select Store</button>
+</form>

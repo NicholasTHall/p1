@@ -1,16 +1,16 @@
 @model PizzaWorld.WebClient.Models.OrderViewModel
 <section class="col-md-6">
   <p>Customer @Model.Customer order summary for store @Model.Store </p>
-  <form asp-action="PlaceOrder" asp-controller="order" asp-antiforgery="true" method="POST">
-
-    @foreach (var item in Model.Pizzas)
+  @foreach (var item in Model.Pizzas)
     {
-      <input hidden="true" type="radio" asp-for="@Model.Pizzas" value="@item">
       <label for="@item">@item.PizzaType</label>
     }
+  <form asp-action="PlaceOrder" asp-controller="order" asp-antiforgery="true" method="POST">
+
     @Html.HiddenFor(m=>m.Customer)
     @Html.HiddenFor(m=>m.Store)
     @Html.HiddenFor(m=>m.Pizzas)
+
 
     <button type="submit">Place Order</button>
   </form>

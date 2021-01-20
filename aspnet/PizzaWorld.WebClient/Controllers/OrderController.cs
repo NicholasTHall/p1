@@ -28,7 +28,7 @@ namespace PizzaBox.WebClient.Controllers
       {
         var user = _ctx.GetOneUser(model.Customer);
         user.SelectedStore = _ctx.GetOneStore(model.Store);
-        
+
         var order = new Order();
 
         foreach(var pizza in model.Pizzas)

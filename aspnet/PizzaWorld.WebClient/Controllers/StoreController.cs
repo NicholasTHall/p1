@@ -15,13 +15,34 @@ namespace PizzaWorld.WebClient.Controllers
     }
 
     [HttpGet]
-    public IActionResult Home()
+    public IActionResult Home(StoreViewModel model)
     {
       var store = new StoreViewModel();
-      store.Name = _ctx.GetOneStore("One").Name;
-      store.Orders = _ctx.GetStoreOrders("One");
+      store.Name = model.Name;
+      store.Orders = _ctx.GetStoreOrders(model.Name);
 
       return View("home", store);
+    }
+
+    [HttpGet]
+    public IActionResult SelectStore()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public IActionResult SelectStore(StoreViewModel model)
+    {
+      var store = _ctx.GetOneStore(model.Name);
+      if (store == null)
+      {
+        ModelState.AddModelError(string.Empty, "Invalid Store Name.");
+        return View();
+      }
+      else
+      {
+        return RedirectToAction("Home", model);
+      }
     }
 
     [HttpGet]

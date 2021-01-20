@@ -86,13 +86,7 @@ namespace PizzaWorld.WebClient.Controllers
     [HttpGet]
     public IActionResult MakeOrder(CustomerViewModel model)
     {
-      var customer = new CustomerViewModel()
-      {
-        Name = model.Name,
-        SelectedStore = model.SelectedStore,
-        Orders = _ctx.GetOneUser(model.Name).Orders,
-        Order = model.Order
-      };
+      var customer = model;
 
       return View(customer);
     }
