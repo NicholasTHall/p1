@@ -71,7 +71,7 @@ namespace PizzaWorld.Domain.Models
         sb.Append($"at price {p.Price}\n");
       };
 
-      return $"ordered pizzas:\n{sb.ToString()}Total price of order is: {ComputePricing()}";
+      return $"ordered pizzas:\n{sb.ToString()}Total price of order is: {ComputePricing()} Order Date is: {OrderDate}";
     }
 
     public void MakeMeatPizza()

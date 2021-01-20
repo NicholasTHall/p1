@@ -19,7 +19,6 @@ namespace PizzaWorld.WebClient.Controllers
     {
       var store = new StoreViewModel();
       store.Name = model.Name;
-      store.Orders = _ctx.GetStoreOrders(model.Name);
 
       return View("home", store);
     }
@@ -48,11 +47,9 @@ namespace PizzaWorld.WebClient.Controllers
     [HttpGet]
     public IActionResult OrderHistory(StoreViewModel model)
     {
-      var store = new StoreViewModel()
-      {
-        Name = model.Name,
-        Orders = _ctx.GetOneStore(model.Name).Orders
-      };
+      var store = model;
+      var ctxStore = _ctx.GetOneStore(model.Name);
+      store.Orders = ctxStore.OrderHistory();
       return View(store);
     }
 

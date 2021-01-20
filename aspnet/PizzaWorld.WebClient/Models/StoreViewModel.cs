@@ -7,7 +7,7 @@ namespace PizzaWorld.WebClient.Models
   {
     public string PizzaStats {get; set;}
     public string Revenue {get; set;}
-    public List<Order> Orders { get; set; }
+    public string Orders { get; set; }
     public string Name { get; set; }
   }
 }

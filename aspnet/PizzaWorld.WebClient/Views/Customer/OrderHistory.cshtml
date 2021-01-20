@@ -8,11 +8,7 @@
 <section>
   @Model.Name
 
-  @foreach (var item in Model.Orders)
-  {
-    <section class="row-md-4">
-      <textarea class="col-md-8" cols="100" rows="5">@item.ToString()</textarea>
-      <text class="col-md-4" contenteditable="false">@item.OrderDate.ToString()</text>
-    </section>
-  }
+  <section class="row-md-4">
+      <textarea class="col-md-8" cols="100" rows="5">@Model.Orders</textarea>
+  </section>
 </section>

@@ -41,6 +41,16 @@ namespace PizzaWorld.Storing
                         .FirstOrDefault<Store>(s => s.Name == name).Orders;
     }
 
+    public Store GetStoreByUser(User user)
+    {
+      Store Store = _ctx.Users.FirstOrDefault<User>(u => u.Name == user.Name).SelectedStore;
+      if(Store != null){return Store;}
+      return _ctx.Stores.Include(s => s.Orders).ThenInclude(o => o.Pizzas).ThenInclude(c => c.PizzaCrust)
+                        .Include(s => s.Orders).ThenInclude(o => o.Pizzas).ThenInclude(ps => ps.PizzaSize)
+                        .Include(s => s.Orders).ThenInclude(o => o.Pizzas).ThenInclude(t => t.PizzaToppings)
+                        .FirstOrDefault<Store>(s => s.EntityId == 1);
+    }
+
     public IEnumerable<User> GetUsers()
     {
       return _ctx.Users;

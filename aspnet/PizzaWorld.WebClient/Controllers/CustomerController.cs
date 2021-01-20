@@ -27,8 +27,8 @@ namespace PizzaWorld.WebClient.Controllers
       var user = _ctx.GetOneUser(model.Name);
       var customer = new CustomerViewModel();
       customer.Name = user.Name;
-      customer.SelectedStore = _ctx.GetOneStore("One").Name;
-      customer.Orders = user.Orders;
+      customer.SelectedStore =  _ctx.GetStoreByUser(user).Name;
+      customer.Orders = user.OrderHistory();
       customer.Order = new OrderViewModel()
       {
         Pizzas = new List<APizzaModel>()
@@ -40,11 +40,19 @@ namespace PizzaWorld.WebClient.Controllers
     [HttpGet]
     public IActionResult SelectStore(CustomerViewModel model)
     {
+      var store = _ctx.GetOneStore(model.SelectedStore);
+
+      if (store == null)
+      {
+        ModelState.AddModelError(string.Empty, "Invalid Store Name.");
+        return RedirectToAction("Home", model);
+      }
+
       var user = _ctx.GetOneUser(model.Name);
       var customer = new CustomerViewModel();
       customer.Name = user.Name;
       customer.SelectedStore = _ctx.GetOneStore(model.SelectedStore).Name;
-      customer.Orders = user.Orders;
+      customer.Orders = user.OrderHistory();
       customer.Order = new OrderViewModel()
       {
         Pizzas = new List<APizzaModel>()
@@ -87,7 +95,7 @@ namespace PizzaWorld.WebClient.Controllers
       {
         Name = model.Name,
         SelectedStore = model.SelectedStore,
-        Orders = _ctx.GetOneUser(model.Name).Orders,
+        Orders = _ctx.GetOneUser(model.Name).OrderHistory(),
         Order = new OrderViewModel()
         {
           Customer = model.Name,
@@ -138,7 +146,7 @@ namespace PizzaWorld.WebClient.Controllers
       var customer = new CustomerViewModel()
       {
         Name = model.Name,
-        Orders = _ctx.GetOneUser(model.Name).Orders
+        Orders = _ctx.GetOneUser(model.Name).OrderHistory()
       };
       return View(customer);
     }
