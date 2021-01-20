@@ -36,6 +36,7 @@ namespace PizzaBox.WebClient.Controllers
           order.Pizzas.Add(pizza);
         }
 
+        order.OrderDate = DateTime.Now;
         user.SelectedStore.CreateOrder(order);
         user.Orders.Add(order);
         _ctx.Update();

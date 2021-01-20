@@ -91,6 +91,11 @@ namespace PizzaWorld.WebClient.Controllers
     [HttpGet]
     public IActionResult CreateOrder(CustomerViewModel model)
     {
+      var user = _ctx.GetOneUser(model.Name);
+      if(user.OrderTimeLimitCheck()){
+        ModelState.AddModelError(string.Empty, "Can not make another order within two hours");
+        return View("Home", model);
+      }
       var customer = new CustomerViewModel()
       {
         Name = model.Name,
