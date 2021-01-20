@@ -90,7 +90,7 @@ namespace PizzaWorld.Domain.Models
       decimal revenue = 0;
       foreach (var o in Orders)
       {
-        if (o.OrderDate.Month.Equals(DateTime.Now.Month))
+        if (o.OrderDate.Month.Equals(DateTime.Now.Month) && o.OrderDate.Year.Equals(DateTime.Now.Year))
         {
           revenue += o.ComputePricing();
         }
@@ -107,7 +107,7 @@ namespace PizzaWorld.Domain.Models
 
       foreach (var o in Orders)
       {
-        if (o.OrderDate.Month.Equals(DateTime.Now.Month))
+        if (o.OrderDate.Month.Equals(DateTime.Now.Month)&& o.OrderDate.Year.Equals(DateTime.Now.Year))
         {
           foreach (var p in o.Pizzas)
           {

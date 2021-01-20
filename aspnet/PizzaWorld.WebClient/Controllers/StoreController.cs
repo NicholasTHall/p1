@@ -46,7 +46,7 @@ namespace PizzaWorld.WebClient.Controllers
     }
 
     [HttpGet]
-    public IActionResult OrderHistory(CustomerViewModel model)
+    public IActionResult OrderHistory(StoreViewModel model)
     {
       var store = new StoreViewModel()
       {
@@ -54,6 +54,36 @@ namespace PizzaWorld.WebClient.Controllers
         Orders = _ctx.GetOneStore(model.Name).Orders
       };
       return View(store);
+    }
+
+    [HttpGet]
+    public IActionResult Sales(StoreViewModel model)
+    {
+      var store = model;
+
+      return View(store);
+    }
+
+    [HttpGet]
+    public IActionResult WeeklySales(StoreViewModel model)
+    {
+      var store = model;
+      var ctxStore = _ctx.GetOneStore(model.Name);
+      store.PizzaStats = ctxStore.WeeklyPizzaStats();
+      store.Revenue = ctxStore.WeeklyRevenue();
+
+      return View("Sales",store);
+    }
+
+    [HttpGet]
+    public IActionResult MonthlySales(StoreViewModel model)
+    {
+      var store = model;
+      var ctxStore = _ctx.GetOneStore(model.Name);
+      store.PizzaStats = ctxStore.MonthlyPizzaStats();
+      store.Revenue = ctxStore.MonthlyRevenue();
+
+      return View("Sales",store);
     }
   }
 }

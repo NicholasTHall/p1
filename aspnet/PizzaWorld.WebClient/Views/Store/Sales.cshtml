@@ -1,0 +1,19 @@
+@model PizzaWorld.WebClient.Models.StoreViewModel
+
+@{
+  ViewBag.Title = "Store - Sales";
+  Layout = "_Layout";
+}
+
+<section class="col-md-12">
+  <p>@Model.Name</p>
+
+  <form class="row-md-12">
+    @Html.ActionLink("Weekly Sales","WeeklySales","Store",this.Model)
+    @Html.ActionLink("Monthly Sales","MonthlySales","Store",this.Model)
+  </form>
+
+  <p>@Model.Revenue</p>
+
+  <textarea class="col-md-8" cols="100" rows="5">@Model.PizzaStats</textarea>
+</section>

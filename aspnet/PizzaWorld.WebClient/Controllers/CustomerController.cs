@@ -34,7 +34,23 @@ namespace PizzaWorld.WebClient.Controllers
         Pizzas = new List<APizzaModel>()
       };
 
-      return View("home", customer);
+      return View("Home", customer);
+    }
+
+    [HttpGet]
+    public IActionResult SelectStore(CustomerViewModel model)
+    {
+      var user = _ctx.GetOneUser(model.Name);
+      var customer = new CustomerViewModel();
+      customer.Name = user.Name;
+      customer.SelectedStore = _ctx.GetOneStore(model.SelectedStore).Name;
+      customer.Orders = user.Orders;
+      customer.Order = new OrderViewModel()
+      {
+        Pizzas = new List<APizzaModel>()
+      };
+
+      return View("Home", customer);
     }
 
     [HttpGet]

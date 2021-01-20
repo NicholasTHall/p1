@@ -7,6 +7,15 @@
 
 <section>
   <h2>Customer: @Model.Name</h2>
+  <h3>Current Store: @Model.SelectedStore</h3>
+
+  <form asp-action="SelectStore" asp-controller="Customer" asp-antiforgery="true" method="GET">
+    @Html.HiddenFor(m=>m.Name)
+    <label>Enter Store Name</label>
+    <input type="text" asp-for="@Model.SelectedStore">
+
+    <button type="submit" value="@Model.SelectedStore">Select Store</button>
+  </form>
 
   <form>
     @Html.ActionLink("Order History","OrderHistory","Customer",this.Model)
